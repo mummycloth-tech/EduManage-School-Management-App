@@ -13,14 +13,17 @@ export default function Login() {
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Attempting login with:", { email, password }); // Debug log
     const { data, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
     if (authError) {
+      console.log("Login error:", authError); // Debug error
       setError(authError.message);
     } else if (data.user) {
-      router.push("/dashboard"); // Redirect to a dashboard (create this page next)
+      console.log("Login successful, user:", data.user); // Debug success
+      router.push("/dashboard");
     }
   };
 
@@ -36,7 +39,8 @@ export default function Login() {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
-        router.push("/dashboard"); // Redirect on sign-in
+        console.log("Signed in, session:", session); // Debug session
+        router.push("/dashboard");
       }
     });
     return () => {
