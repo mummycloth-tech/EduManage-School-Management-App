@@ -14,6 +14,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,11 +25,32 @@ export default function SignUp() {
     const { data, error: authError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          school_name: schoolName,
+          school_address: schoolAddress,
+          school_phone: schoolPhone,
+          school_email: schoolEmail,
+          school_type: schoolType,
+          full_name: fullName,
+        },
+      },
     });
     if (authError) {
       setError(authError.message);
     } else {
-      setError("Sign-up successful! Check email to verify.");
+      setSuccess("Sign-up successful! Please check your email to verify your account, then log in.");
+      setError("");
+      // Reset form
+      setSchoolName("");
+      setSchoolAddress("");
+      setSchoolPhone("+1 (555) 123-4567");
+      setSchoolEmail("");
+      setSchoolType("Primary School");
+      setFullName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
     }
   };
 
@@ -189,6 +211,7 @@ export default function SignUp() {
             Register School
           </button>
           {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
+          {success && <p className="text-green-500 text-sm text-center mt-2">{success}</p>}
           <p className="text-center text-sm text-gray-600 mt-4">
             Already have an account?{" "}
             <a href="/login" className="text-blue-600 hover:underline">

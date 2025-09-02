@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("admin");
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ export default function Login() {
     if (authError) {
       setError(authError.message);
     } else if (data.user) {
-      setError("Login successful! (Redirect not implemented yet)");
+      router.push("/dashboard"); // Redirect to a dashboard (create this page next)
     }
   };
 
@@ -30,6 +32,17 @@ export default function Login() {
       setError(error.message);
     }
   };
+
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN") {
+        router.push("/dashboard"); // Redirect on sign-in
+      }
+    });
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#D1C4E9]">
