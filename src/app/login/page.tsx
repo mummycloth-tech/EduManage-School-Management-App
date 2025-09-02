@@ -13,16 +13,16 @@ export default function Login() {
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Attempting login with:", { email, password }); // Debug log
+    console.log("Attempting login with email:", email, "password length:", password.length); // Detailed log
     const { data, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
     if (authError) {
-      console.log("Login error:", authError); // Debug error
+      console.log("Login error details:", authError); // Full error object
       setError(authError.message);
     } else if (data.user) {
-      console.log("Login successful, user:", data.user); // Debug success
+      console.log("Login successful, user data:", data.user); // User details
       router.push("/dashboard");
     }
   };
@@ -32,6 +32,7 @@ export default function Login() {
       provider: "google",
     });
     if (error) {
+      console.log("Google login error:", error); // Google error
       setError(error.message);
     }
   };
@@ -39,7 +40,7 @@ export default function Login() {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
-        console.log("Signed in, session:", session); // Debug session
+        console.log("Auth state changed to SIGNED_IN, session:", session); // Session debug
         router.push("/dashboard");
       }
     });
