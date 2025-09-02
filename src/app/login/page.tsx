@@ -23,64 +23,71 @@ export default function Login() {
   };
 
   return (
-    <div style={{ backgroundColor: "#E5E7EB", minHeight: "100vh", padding: "2rem" }}>
-      <div style={{ maxWidth: "400px", margin: "0 auto", backgroundColor: "#FFFFFF", padding: "2rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
-        <h1 style={{ color: "#1F2937", textAlign: "center" }}>EduManage Login</h1>
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div className="min-h-screen flex items-center justify-center bg-[#D1C4E9]">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md transform transition-all duration-300 hover:shadow-xl">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-900">EduManage Login</h1>
+          <p className="text-gray-600 mt-2">Secure access for admins and users</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label style={{ color: "#1F2937" }}>Role:</label>
-            <div>
-              <label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+            <div className="flex items-center space-x-4">
+              <label className="flex items-center">
                 <input
                   type="radio"
                   value="admin"
                   checked={role === "admin"}
                   onChange={(e) => setRole(e.target.value)}
-                  style={{ marginRight: "0.5rem" }}
+                  className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300"
                 />
-                Admin
+                <span className="ml-2 text-gray-900">Admin</span>
               </label>
-              <label style={{ marginLeft: "1rem" }}>
+              <label className="flex items-center">
                 <input
                   type="radio"
                   value="user"
                   checked={role === "user"}
                   onChange={(e) => setRole(e.target.value)}
-                  style={{ marginRight: "0.5rem" }}
+                  className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300"
                 />
-                User
+                <span className="ml-2 text-gray-900">User</span>
               </label>
             </div>
-            <p style={{ color: "#4B5563", fontSize: "0.875rem" }}>Admins manage school settings; Users are teachers, accountants, etc.</p>
+            <p className="text-xs text-gray-500 mt-1">Admins manage school settings; Users are teachers, accountants, etc.</p>
           </div>
           <div>
-            <label style={{ color: "#1F2937" }}>Email or Phone:</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email or Phone</label>
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{ width: "100%", padding: "0.5rem", border: "1px solid #D1D5DB", borderRadius: "4px" }}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter your email or phone"
             />
           </div>
           <div>
-            <label style={{ color: "#1F2937" }}>Password:</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ width: "100%", padding: "0.5rem", border: "1px solid #D1D5DB", borderRadius: "4px" }}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter your password"
             />
           </div>
           <button
             type="submit"
-            style={{ padding: "0.75rem", backgroundColor: "#3B82F6", color: "#FFFFFF", border: "none", borderRadius: "4px", cursor: "pointer" }}
+            className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-200"
           >
             Log In
           </button>
-          <a href="/signup" style={{ color: "#3B82F6", textAlign: "center", display: "block", textDecoration: "none" }}>
-            Sign Up (New Schools Only)
-          </a>
-          {error && <p style={{ color: "#EF4444", textAlign: "center" }}>{error}</p>}
+          {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
+          <div className="text-center">
+            <a href="/signup" className="text-purple-600 hover:underline text-sm">
+              Sign Up (New Schools Only)
+            </a>
+          </div>
         </form>
       </div>
     </div>

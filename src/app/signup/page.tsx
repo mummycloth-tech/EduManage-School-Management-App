@@ -23,44 +23,65 @@ export default function SignUp() {
   };
 
   return (
-    <div style={{ backgroundColor: "#E5E7EB", minHeight: "100vh", padding: "2rem" }}>
-      <div style={{ maxWidth: "400px", margin: "0 auto", backgroundColor: "#FFFFFF", padding: "2rem", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
-        <h1 style={{ color: "#1F2937", textAlign: "center" }}>EduManage Sign Up</h1>
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div className="min-h-screen flex items-center justify-center bg-[#D1C4E9]">
+      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">Create your EduManage Account</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label style={{ color: "#1F2937" }}>School Name:</label>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="schoolName">
+              School Name
+            </label>
             <input
               type="text"
+              id="schoolName"
               value={schoolName}
               onChange={(e) => setSchoolName(e.target.value)}
-              style={{ width: "100%", padding: "0.5rem", border: "1px solid #D1D5DB", borderRadius: "4px" }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your school name"
+              required
             />
           </div>
           <div>
-            <label style={{ color: "#1F2937" }}>Email:</label>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+              Email
+            </label>
             <input
-              type="text"
+              type="email"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{ width: "100%", padding: "0.5rem", border: "1px solid #D1D5DB", borderRadius: "4px" }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your email"
+              required
             />
           </div>
           <div>
-            <label style={{ color: "#1F2937" }}>Password:</label>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="password">
+              Password
+            </label>
             <input
               type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ width: "100%", padding: "0.5rem", border: "1px solid #D1D5DB", borderRadius: "4px" }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Create a password"
+              required
             />
           </div>
           <button
             type="submit"
-            style={{ padding: "0.75rem", backgroundColor: "#3B82F6", color: "#FFFFFF", border: "none", borderRadius: "4px", cursor: "pointer" }}
+            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
           >
-            Sign Up
+            Next
           </button>
-          {error && <p style={{ color: "#EF4444", textAlign: "center" }}>{error}</p>}
+          {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
+          <p className="text-center text-sm text-gray-600 mt-4">
+            Already have an account?{" "}
+            <a href="/login" className="text-blue-600 hover:underline">
+              Sign in
+            </a>
+          </p>
         </form>
       </div>
     </div>
