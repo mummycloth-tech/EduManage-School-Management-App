@@ -81,8 +81,8 @@ export default function Dashboard() {
               key={stat.title}
               className={`bg-white/20 backdrop-blur-md shadow-lg rounded-xl p-6 flex flex-col justify-center items-center hover:shadow-xl transition-shadow duration-200`}
             >
-              <h3 className={`text-${stat.color}-300 text-sm font-medium`}>{stat.title}</h3>
-              <p className={`text-${stat.color}-100 text-xl font-bold mt-1`}>{stat.value}</p>
+              <h3 className={`text-${stat.color}-300 text-sm font-medium`}>{stat.title}</h3> {/* Corrected line */}
+              <p className={`text-${stat.color}-100 text-xl font-bold mt-1`}>{stat.value}</p> {/* Corrected line */}
             </div>
           ))}
         </section>
@@ -93,11 +93,11 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[
               { title: "Add New Student", color: "blue", icon: "M12 4v16m8-8H4" },
-              { title: "Add Teacher", color: "green", icon: "M9 12h6m2 8H7a2..." },
-              { title: "Record Attendance", color: "yellow", icon: "M12 8v4l3 3..." },
-              { title: "Generate Report Cards", color: "purple", icon: "M12 8c-4.418 0-8..." },
-              { title: "Create Fees Invoice", color: "red", icon: "M12 8c-4.418 0-8..." },
-              { title: "Schedule Events / Exams", color: "teal", icon: "M8 7V3m8 4V3..." },
+              { title: "Add Teacher", color: "green", icon: "M9 12h6m2 8H7a2 2 0 01-2-2V6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2z" },
+              { title: "Record Attendance", color: "yellow", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }, 
+              { title: "Generate Report Cards", color: "purple", icon: "M12 8c-4.418 0-8 1.79-8 4s3.582 4 8 4 8-1.79 8-4-3.582-4-8-4z" },
+              { title: "Create Fees Invoice", color: "red", icon: "M12 8c-4.418 0-8 1.79-8 4s3.582 4 8 4 8-1.79 8-4-3.582-4-8-4z" },
+              { title: "Schedule Events / Exams", color: "teal", icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" },
             ].map((action) => (
               <div
                 key={action.title}
@@ -108,7 +108,7 @@ export default function Dashboard() {
                 </svg>
                 <span className={`text-${action.color}-100 font-semibold text-center text-lg drop-shadow`}>{action.title}</span>
               </div>
-            ))}
+            ))} 
           </div>
         </section>
 
@@ -149,7 +149,7 @@ export default function Dashboard() {
                 <tr>
                   <td className="px-6 py-4">Alex Johnson</td>
                   <td className="px-6 py-4">/dashboard/admin/Library</td>
-                  <td className="px-6 py-4">11:45 AM</td>
+                  <td className="px-6 py-4">11:45 AM</td> 
                   <td className="px-6 py-4">Tablet</td>
                 </tr>
               </tbody>
